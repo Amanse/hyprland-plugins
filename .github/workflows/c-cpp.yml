@@ -1,0 +1,23 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: hyprland
+      run: git clone --recursive https://github.com/hyprwm/Hyprland && git reset --hard 25d3d73dbfcd2dd4d7b8254cb97f0f7737cd7c03
+    - name: prep
+      run: make pluginenv
+    - name: make headerbar
+      run: HYPRLAND_HEADERS="../Hyprland" cd hyprbars && make all
+    - name: show
+      run: ls
