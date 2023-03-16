@@ -32,6 +32,7 @@ jobs:
     - name: prep
       run: |
         cd Hyprland && make pluginenv
-        HYPRLAND_HEADERS="../Hyprland" cd ../hyprbars && make all
+        cd ../hyprbars 
+        HYPRLAND_HEADERS="../Hyprland"  make all
     - name: show
       run: ls
